@@ -1,0 +1,18 @@
+date/ time
+- time()
+- date()
+- mktime()
+- strtotime()
+
+String
+- strlen()
+- strcmp()
+- explode()
+- htmlspecialchars()
+
+Utility
+- var_dump()
+- isset()
+- empty()
+- die()
+- sleep()
