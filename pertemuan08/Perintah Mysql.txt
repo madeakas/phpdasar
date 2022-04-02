@@ -1,0 +1,181 @@
+Microsoft Windows [Version 10.0.19044.1586]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Madeakas>mysql -u root
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7
+Server version: 5.7.33 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.02 sec)
+
+mysql> create database phpdasar;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpdasar           |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use phpdasar;
+Database changed
+mysql> create table mahasiswa (
+    -> id int primary key auto_increment,
+    -> nama varchar(100),
+    -> nrp char(9),
+    -> email varchar(100),
+    -> jurusan varchar(100),
+    -> gambar varchar(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_phpdasar |
++--------------------+
+| mahasiswa          |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> describe mahasiswa;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama    | varchar(100) | YES  |     | NULL    |                |
+| nrp     | char(9)      | YES  |     | NULL    |                |
+| email   | varchar(100) | YES  |     | NULL    |                |
+| jurusan | varchar(100) | YES  |     | NULL    |                |
+| gambar  | varchar(100) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into mahasiswa values ('1', 'Made Aka', '043040023', 'made@gmail.com', 'Teknik Informatika', 'made.jpg');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from mahasiswa;
++----+----------+-----------+----------------+--------------------+----------+
+| id | nama     | nrp       | email          | jurusan            | gambar   |
++----+----------+-----------+----------------+--------------------+----------+
+|  1 | Made Aka | 043040023 | made@gmail.com | Teknik Informatika | made.jpg |
++----+----------+-----------+----------------+--------------------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into mahasiswa values ('2', 'Farhan Permana', '043040025', 'farhan@gmail.com', 'Teknik Informatika', 'farhan.jpg');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from mahasiswa;
++----+----------------+-----------+------------------+--------------------+------------+
+| id | nama           | nrp       | email            | jurusan            | gambar     |
++----+----------------+-----------+------------------+--------------------+------------+
+|  1 | Made Aka       | 043040023 | made@gmail.com   | Teknik Informatika | made.jpg   |
+|  2 | Farhan Permana | 043040025 | farhan@gmail.com | Teknik Informatika | farhan.jpg |
++----+----------------+-----------+------------------+--------------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select nrp from mahasiswa;
++-----------+
+| nrp       |
++-----------+
+| 043040023 |
+| 043040025 |
++-----------+
+2 rows in set (0.00 sec)
+
+mysql> select nama, nrp from mahasiswa;
++----------------+-----------+
+| nama           | nrp       |
++----------------+-----------+
+| Made Aka       | 043040023 |
+| Farhan Permana | 043040025 |
++----------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from mahasiswa where '043040023';
++----+----------------+-----------+------------------+--------------------+------------+
+| id | nama           | nrp       | email            | jurusan            | gambar     |
++----+----------------+-----------+------------------+--------------------+------------+
+|  1 | Made Aka       | 043040023 | made@gmail.com   | Teknik Informatika | made.jpg   |
+|  2 | Farhan Permana | 043040025 | farhan@gmail.com | Teknik Informatika | farhan.jpg |
++----+----------------+-----------+------------------+--------------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from mahasiswa where nrp = '043040023';
++----+----------+-----------+----------------+--------------------+----------+
+| id | nama     | nrp       | email          | jurusan            | gambar   |
++----+----------+-----------+----------------+--------------------+----------+
+|  1 | Made Aka | 043040023 | made@gmail.com | Teknik Informatika | made.jpg |
++----+----------+-----------+----------------+--------------------+----------+
+1 row in set (0.00 sec)
+
+mysql> update mahasiswa set jurusan = 'Teknik Industri' where nrp = '043040025';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from mahasiswa;
++----+----------------+-----------+------------------+--------------------+------------+
+| id | nama           | nrp       | email            | jurusan            | gambar     |
++----+----------------+-----------+------------------+--------------------+------------+
+|  1 | Made Aka       | 043040023 | made@gmail.com   | Teknik Informatika | made.jpg   |
+|  2 | Farhan Permana | 043040025 | farhan@gmail.com | Teknik Industri    | farhan.jpg |
++----+----------------+-----------+------------------+--------------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> delete from mahasiswa where nrp = '043040025';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from mahasiswa;
++----+----------+-----------+----------------+--------------------+----------+
+| id | nama     | nrp       | email          | jurusan            | gambar   |
++----+----------+-----------+----------------+--------------------+----------+
+|  1 | Made Aka | 043040023 | made@gmail.com | Teknik Informatika | made.jpg |
++----+----------+-----------+----------------+--------------------+----------+
+1 row in set (0.00 sec)
+
+mysql> drop table mahasiswa;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from mahasiswa;
+ERROR 1146 (42S02): Table 'phpdasar.mahasiswa' doesn't exist
+mysql> show tables
+    -> ;
+Empty set (0.00 sec)
+
+mysql> drop database phpdasar;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql>
